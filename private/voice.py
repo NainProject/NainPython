@@ -66,7 +66,7 @@ def voice_analysis(itvNo, qNo, filename):
             voice_list.append(each_sentence)
     else:
         print("Error : " + response.text)
-    voice_content = ['', itvNo, 1, content]     # 리스트
+    voice_content = ['', itvNo, qNo, content]     # 리스트
 
     print(voice_list)
 
@@ -74,8 +74,8 @@ def voice_analysis(itvNo, qNo, filename):
     conn = dbtemp.connect()
 
     # "insert into TB_VOICE (VOICE_CONTENT) values (:1)"
-    query1 = "insert into TB_VOICE values (:1, :2, :3, :4)"
-    query2 = "insert into TB_VOICE_SENTENCE values (:1, :2, :3, :4, :5)"
+    query1 = "insert into TB_VOICE values (:1, :2, :3, :4)"     # (VOICE_NO, ITV_NO, Q_NO, VOICE_CONTENT)
+    query2 = "insert into TB_VOICE_SENTENCE values (:1, :2, :3, :4, :5)" #(VS_NO, VOICE_NO, SENTENCE, VSEN_POSITIVE, VSEN_NEGATIVE)
     query3 = "select max(voice_no) from TB_VOICE"
     query4 = "select max(vs_no) from TB_VOICE_SENTENCE"
     cursor = conn.cursor()

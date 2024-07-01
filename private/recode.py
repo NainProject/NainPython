@@ -54,4 +54,4 @@ def save_video(file, itvNo):
     # 파일 저장
     file.save(file_path)
 
-    return jsonify({'message': 'Video saved successfully'})
+    return upload_filename
